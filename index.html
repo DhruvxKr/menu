@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,135 +12,101 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark background */
+            -webkit-tap-highlight-color: transparent;
         }
-        /* Custom scrollbar for day selector */
         .day-selector::-webkit-scrollbar {
-            height: 4px;
+            display: none;
         }
-        .day-selector::-webkit-scrollbar-thumb {
-            background-color: #6366f1; /* Indigo */
-            border-radius: 10px;
-        }
-        .day-selector::-webkit-scrollbar-track {
-            background-color: #374151; /* Gray-700 */
-        }
-        /* Card enter animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .meal-card {
-            animation: fadeIn 0.5s ease-out forwards;
+        .day-selector {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
-</head>
-<body class="antialiased text-gray-200">
 
-    <div class="min-h-screen container mx-auto p-4 sm:p-6 lg:p-8">
-        <header class="text-center mb-6">
-            <h1 class="text-3xl sm:text-4xl font-bold text-white">This Week's Menu</h1>
-            <p class="text-md text-gray-400 mt-1">Select a day to see the delicious meals planned!</p>
+    <!-- PWA and Mobile App Meta Tags -->
+    <meta name="theme-color" content="#1F2937">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Menu App">
+    <link rel="manifest" id="manifest">
+
+</head>
+
+<body class="bg-gray-900 text-gray-200 min-h-screen">
+    <div class="container mx-auto p-4 max-w-4xl">
+        <header class="text-center my-6">
+            <h1 class="text-4xl font-bold text-white">Weekly Menu</h1>
+            <p class="text-gray-400 mt-2">Select a day to see the menu</p>
         </header>
 
-        <!-- Day Selector -->
-        <div id="day-selector-container" class="sticky top-0 z-10 bg-gray-900/80 backdrop-blur-sm py-4 mb-8">
-            <div id="day-selector" class="day-selector flex items-center justify-start sm:justify-center space-x-2 p-2 overflow-x-auto max-w-full mx-auto">
-                <!-- Day buttons will be inserted here by JavaScript -->
+        <nav class="sticky top-0 bg-gray-900 py-4 z-10">
+            <div id="day-selector" class="day-selector flex space-x-2 overflow-x-auto pb-2">
+                <!-- Day buttons will be inserted here by JS -->
             </div>
-        </div>
+        </nav>
 
-        <!-- Menu Display -->
-        <main id="menu-display" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Menu cards will be inserted here by JavaScript -->
+        <main id="menu-display" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Menu cards will be inserted here by JS -->
         </main>
+
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menu = {
-              "Monday": {
-                "Breakfast": ["Idli", "Sambhar + Chutney", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Parwal Dry", "Veg Kolhapuri", "Dal Makhani", "Rasam", "Chapati", "Jeera Rice", "Fried Papad", "Masala Chopped Salad", "Punjabi Lassi", "Fruit Custard"],
-                "Snacks": ["Szechwan Roll", "Tea + Coffee"],
-                "Dinner": ["Tawa Mix Veg Dry", "Palak Paneer", "Dal Masala", "Jeera Rice", "Chapati", "Sambhar", "Onion Salad", "Boondi Raita", "Egg Bhurji", "Fruit"]
-              },
-              "Tuesday": {
-                "Breakfast": ["Onion Poha", "Lemon + Sev + Curd", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Cabbage Dry", "Dum Aloo Gravy", "Dal Lasoni", "Sambhar", "Chapati", "Mutter Rice", "Fryums", "Moong Onion Salad", "Plain Curd", "Shahi Tukda"],
-                "Snacks": ["Kachori", "Tea + Coffee"],
-                "Dinner": ["Soya Keema Masala", "Chole Kulche", "Dal Tadka", "Plain Rice", "Chapati", "Rasam", "Onion + Lemon", "Plain Curd", "Fruit"]
-              },
-              "Wednesday": {
-                "Breakfast": ["Aloo Paratha", "Curd", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Bhindi Masala Dry", "Kadhi Pakode", "Dal Tadka", "Rasam", "Chapati", "Plain Rice", "Roasted Papad", "Chana Onion Tomato Salad", "Plain Curd", "Cream Jamun"],
-                "Snacks": ["Dabeli", "Tea + Coffee"],
-                "Dinner": ["Aloo Beans Dry", "Paneer Biryani", "Dal Fry", "Curd Rice", "Chapati", "Sambhar", "Mix Salad", "Veg Raita", "Chicken Biryani", "Fruit"]
-              },
-              "Thursday": {
-                "Breakfast": ["Moong Dal Chilla", "Chutney + Ketchup", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Aloo Methi Dry", "Chole Amritsari", "Dal Arhar", "Sambhar", "Puri + Chapati", "Plain Rice", "Fryums", "Mix Salad", "Plain Curd", "Fresh Lime Water", "Sevaiya Kheer"],
-                "Snacks": ["Vada Pav", "Tea + Coffee"],
-                "Dinner": ["Veg Jaffrezi", "Mushroom Masala", "Dal Fry", "Plain Rice + Curd Rice", "Chapati", "Rasam", "Green Salad", "Plain Curd", "Boondi Raita", "Chicken/Egg Curry", "Fruit"]
-              },
-              "Friday": {
-                "Breakfast": ["Veg Sandwich", "Ketchup", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Black Chana Dry", "Palak Corn", "Dal Panchratna", "Rasam", "Chapati", "Plain Rice", "Plain Papad", "Red Salad", "Plain Curd", "Buttermilk", "Moong dal Halwa"],
-                "Snacks": ["Masala Maggi", "Tea + Coffee"],
-                "Dinner": ["Baigan Bharta", "Paneer Butter Masala", "Dal Tadka", "Jeera Rice", "Chapati + Paratha", "Sambhar", "Onion Sirka", "Boondi Raita", "Chicken/Egg Curry", "Fruit"]
-              },
-              "Saturday": {
-                "Breakfast": ["Misal Pav", "Farsan + Onion", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Dhudhi Chana Dry", "Punjabi Rajma", "Dal Kolhapuri", "Sambhar", "Chapati", "Plain Rice", "Fryums", "Dhokla", "Plain Curd", "Gulab Jamun"],
-                "Snacks": ["Samosa", "Tea + Coffee"],
-                "Dinner": ["Onion & Tomato Uttapam", "Methi Malai Matar", "Dal Lahsuni", "Masala Khichdi", "Chapati", "Rasam", "Toss Salad", "Cucumber Raita", "Fruit"]
-              },
-              "Sunday": {
-                "Breakfast": ["Masala Dosa", "Sambhar + Chutney", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
-                "Lunch": ["Tamatar Lehsun Chutney + Thecha", "Pyaaz Paratha", "Dal Banjara", "Kokum Rasam", "Chapati", "Plain Rice", "Fried Papad", "Green Salad", "Dahi Vada", "*********"],
-                "Snacks": ["French Fries", "Tea + Coffee"],
-                "Dinner": ["Pav Bhaji", "Veg Kofta", "Sev Dahi Puri", "Vegetable Masala Pulao", "Onion + Lemon", "Chapati", "Choco Bite", "*********"]
-              }
-            };
-
-            const daySelector = document.getElementById('day-selector');
-            const menuDisplay = document.getElementById('menu-display');
-            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            
-            const displayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
-            const todayIndex = new Date().getDay();
-            let selectedDay = daysOfWeek[todayIndex];
-
-            // Function to create meal card
-            function createMealCard(title, items, icon) {
-                const itemsHtml = items.map(item => `<li class="text-gray-400">${item.replace(/[*]/g, '')}</li>`).join('');
-                return `
-                    <div class="meal-card bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                ${icon}
-                                <h3 class="text-xl font-semibold text-white ml-3">${title}</h3>
-                            </div>
-                            <ul class="space-y-2">
-                                ${itemsHtml}
-                            </ul>
-                        </div>
-                    </div>
-                `;
+        const menu = {
+            Monday: {
+                Breakfast: ["Idli", "Sambhar + Chutney", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Parwal Dry", "Veg Kolhapuri", "Dal Makhani", "Rasam", "Chapati", "Jeera Rice", "Fried Papad", "Masala Chopped Salad", "Punjabi Lassi", "Fruit Custard"],
+                Snacks: ["Szechwan Roll", "Tea + Coffee"],
+                Dinner: ["Tawa Mix Veg Dry", "Palak Paneer", "Dal Masala", "Jeera Rice", "Chapati", "Sambhar", "Onion Salad", "Boondi Raita", "Egg Bhurji", "Fruit"]
+            },
+            Tuesday: {
+                Breakfast: ["Onion Poha", "Lemon + Sev + Curd", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Cabbage Dry", "Dum Aloo Gravy", "Dal Lasoni", "Sambhar", "Chapati", "Mutter Rice", "Fryums", "Moong Onion Salad", "Plain Curd", "Shahi Tukda"],
+                Snacks: ["Kachori", "Tea + Coffee"],
+                Dinner: ["Soya Keema Masala", "Chole Kulche", "Dal Tadka", "Plain Rice", "Chapati", "Rasam", "Onion + Lemon", "Plain Curd", "Fruit"]
+            },
+            Wednesday: {
+                Breakfast: ["Aloo Paratha", "Curd", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Bhindi Masala Dry", "Kadhi Pakode", "Dal Tadka", "Rasam", "Chapati", "Plain Rice", "Roasted Papad", "Chana Onion Tomato Salad", "Plain Curd", "Cream Jamun"],
+                Snacks: ["Dabeli", "Tea + Coffee"],
+                Dinner: ["Aloo Beans Dry", "Paneer Biryani", "Dal Fry", "Plain Rice", "Chapati", "Rasam", "Mix Salad", "Plain Curd", "Chicken Biryani", "Fruit"]
+            },
+            Thursday: {
+                Breakfast: ["Moong Dal Chilla", "Chutney + Ketchup", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Aloo Meethi Dry", "Chole Amritsari", "Dal Arhar", "Sambhar", "Puri + Chapati", "Plain Rice", "Fryums", "Mix Salad", "Plain Curd", "Fresh Lime Water", "Sevaiya Kheer"],
+                Snacks: ["Vada Pav", "Tea + Coffee"],
+                Dinner: ["Veg Jalfrezi", "Mushroom Masala", "Dal Fry", "Plain Rice + Curd Rice", "Chapati", "Rasam", "Green Salad", "Plain Curd", "Fruit"]
+            },
+            Friday: {
+                Breakfast: ["Veg Sandwich", "Ketchup", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Black Chana Dry", "Palak Corn", "Dal Panchratna", "Rasam", "Chapati", "Plain Rice", "Plain Papad", "Red Salad", "Plain Curd", "Buttermilk", "Moong Dal Halwa"],
+                Snacks: ["Masala Maggi", "Tea + Coffee"],
+                Dinner: ["Bagan Bharta", "Paneer Butter Masala", "Dal Tadka", "Jeera Rice", "Chapati + Paratha", "Sambhar", "Onion Sirka", "Boondi Raita", "Chicken/Egg Curry", "Fruit"]
+            },
+            Saturday: {
+                Breakfast: ["Misal Pav", "Farsan + Onion", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Dhudhi Chana Dry", "Punjabi Rajma", "Dal Kolhapuri", "Sambhar", "Chapati", "Plain Rice", "Fryums", "Dhokla", "Plain Curd", "Gulab Jamun"],
+                Snacks: ["Samosa", "Tea + Coffee"],
+                Dinner: ["Onion & Tomato Uttapam", "Methi Malai Matar", "Dal Lahsuni", "Masala Khichdi", "Chapati", "Rasam", "Toss Salad", "Cucumber Raita", "Fruit"]
+            },
+            Sunday: {
+                Breakfast: ["Masala Dosa", "Sambhar + Chutney", "Omelette", "Boiled Egg", "Bread + Butter + Jam", "Bournvita", "Hot + Cold Milk", "Tea + Coffee", "Cornflakes"],
+                Lunch: ["Tamatar Lehsun Chutney + Thecha", "Pyaaz Paratha", "Dal Banjara", "Kokum Rasam", "Chapati", "Plain Rice", "Fried Papad", "Green Salad", "Dahi Vada"],
+                Snacks: ["French Fries", "Tea + Coffee"],
+                Dinner: ["Pav Bhaji", "Veg Kofta", "Sev Dahi Puri", "Vegetable Masala Pulao", "Chapati", "Onion + Lemon", "Choco Bite"]
             }
+        };
 
-            // Function to render menu for a selected day
-            function renderMenu(day) {
-                const dayMenu = menu[day];
-                if (!dayMenu) {
-                    menuDisplay.innerHTML = `<p class="text-center col-span-full">No menu available for ${day}.</p>`;
-                    return;
-                }
+        const daySelector = document.getElementById('day-selector');
+        const menuDisplay = document.getElementById('menu-display');
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const today = days[new Date().getDay()];
 
+        function showMenu(day) {
+            const dayMenu = menu[day];
+            if (dayMenu) {
                 menuDisplay.innerHTML = ''; // Clear previous menu
 
-                // NEW ICONS
                 const icons = {
                     Breakfast: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>',
                     Lunch: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a2 2 0 00-2 2v1.5a.5.5 0 01-1 0V4a4 4 0 018 0v1.5a.5.5 0 01-1 0V4a2 2 0 00-2-2h-2zM4 9a2 2 0 00-2 2v2a2 2 0 002 2h12a2 2 0 002-2v-2a2 2 0 00-2-2H4zm0 1h12v2H4v-2z" clip-rule="evenodd" /></svg>',
@@ -149,57 +116,128 @@
 
                 // Create cards in order
                 Object.keys(dayMenu).forEach(meal => {
-                    if (dayMenu[meal] && dayMenu[meal].length > 0) {
-                        const cardHTML = createMealCard(meal, dayMenu[meal], icons[meal] || '');
-                        menuDisplay.insertAdjacentHTML('beforeend', cardHTML);
-                    }
+                    const items = dayMenu[meal];
+                    const card = document.createElement('div');
+                    card.className = 'bg-gray-800 rounded-xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300';
+                    let itemsHtml = items.map(item => `<li class="text-gray-300">${item.replace(/\*{6,}/, '******')}</li>`).join('');
+
+                    card.innerHTML = `
+                        <div class="flex items-center mb-4">
+                            ${icons[meal] || ''}
+                            <h2 class="text-2xl font-semibold text-white ml-3">${meal}</h2>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2">
+                            ${itemsHtml}
+                        </ul>
+                    `;
+                    menuDisplay.appendChild(card);
                 });
             }
 
-            // Function to set up the day selector
-            function setupDaySelector() {
-                displayOrder.forEach(day => {
-                    const button = document.createElement('button');
-                    button.textContent = day;
-                    button.dataset.day = day;
-                    button.className = `px-4 py-2 text-sm sm:text-base font-semibold rounded-full whitespace-nowrap transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500`;
-                    
-                    if (day === selectedDay) {
-                        button.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
-                    } else {
-                        button.classList.add('bg-gray-700', 'text-gray-200', 'hover:bg-gray-600');
-                    }
+            // Update active button
+            document.querySelectorAll('.day-btn').forEach(button => {
+                if (button.textContent === day) {
+                    button.classList.add('bg-indigo-600', 'text-white');
+                    button.classList.remove('bg-gray-700', 'text-gray-300');
+                    button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    button.classList.remove('bg-indigo-600', 'text-white');
+                    button.classList.add('bg-gray-700', 'text-gray-300');
+                }
+            });
+        }
 
-                    button.addEventListener('click', () => {
-                        selectedDay = day;
-                        // Update button styles
-                        document.querySelectorAll('#day-selector button').forEach(btn => {
-                            btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
-                            btn.classList.add('bg-gray-700', 'text-gray-200', 'hover:bg-gray-600');
-                        });
-                        button.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
-                        button.classList.remove('bg-gray-700', 'text-gray-200', 'hover:bg-gray-600');
-                        
-                        // Render the new menu
-                        renderMenu(day);
-                    });
-                    daySelector.appendChild(button);
+        // Populate day selector
+        days.forEach(day => {
+            const button = document.createElement('button');
+            button.textContent = day;
+            button.className = 'day-btn px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors duration-200';
+            button.onclick = () => showMenu(day);
+            daySelector.appendChild(button);
+        });
+
+        // Show today's menu initially
+        showMenu(today);
+
+        // PWA Setup - This part makes the app installable and work offline
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Generate and inject the manifest file
+            const manifest = {
+                "name": "Weekly Menu App",
+                "short_name": "Menu App",
+                "start_url": ".",
+                "display": "standalone",
+                "background_color": "#111827",
+                "theme_color": "#1F2937",
+                "description": "A simple app to view the weekly menu.",
+                "icons": [{
+                    "src": "https://placehold.co/192x192/1F2937/FFFFFF?text=Menu",
+                    "sizes": "192x192",
+                    "type": "image/png",
+                    "purpose": "any maskable"
+                }, {
+                    "src": "https://placehold.co/512x512/1F2937/FFFFFF?text=Menu",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                     "purpose": "any maskable"
+                }]
+            };
+            const manifestJSON = JSON.stringify(manifest);
+            const manifestBlob = new Blob([manifestJSON], { type: 'application/json' });
+            const manifestUrl = URL.createObjectURL(manifestBlob);
+            document.getElementById('manifest').setAttribute('href', manifestUrl);
+
+            // 2. Define and register the Service Worker
+            const swCode = `
+                const CACHE_NAME = 'weekly-menu-cache-v1';
+                const urlsToCache = [
+                    '/',
+                    '/index.html'
+                ];
+
+                self.addEventListener('install', event => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME).then(cache => {
+                            console.log('Cache opened');
+                            return cache.addAll(urlsToCache.map(url => new Request(url, { cache: 'reload' })));
+                        })
+                    );
                 });
-            }
 
-            // Initial setup
-            setupDaySelector();
-            renderMenu(selectedDay);
-            
-            // Scroll the selected day into view on load
-            const activeButton = document.querySelector(`[data-day="${selectedDay}"]`);
-            if(activeButton) {
-                activeButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                self.addEventListener('fetch', event => {
+                    event.respondWith(
+                        caches.match(event.request).then(response => {
+                            return response || fetch(event.request);
+                        })
+                    );
+                });
+
+                self.addEventListener('activate', event => {
+                    const cacheWhitelist = [CACHE_NAME];
+                    event.waitUntil(
+                        caches.keys().then(cacheNames => {
+                            return Promise.all(
+                                cacheNames.map(cacheName => {
+                                    if (cacheWhitelist.indexOf(cacheName) === -1) {
+                                        return caches.delete(cacheName);
+                                    }
+                                })
+                            );
+                        })
+                    );
+                });
+            `;
+
+            if ('serviceWorker' in navigator) {
+                const swBlob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(swBlob);
+                navigator.serviceWorker.register(swUrl)
+                    .then(reg => console.log('Service Worker registered.', reg))
+                    .catch(err => console.error('Service Worker registration failed:', err));
             }
         });
     </script>
 
 </body>
 </html>
-
 
