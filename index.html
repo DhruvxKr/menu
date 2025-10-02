@@ -14,9 +14,11 @@
             font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+
         .day-selector::-webkit-scrollbar {
             display: none;
         }
+
         .day-selector {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -40,7 +42,8 @@
         </header>
 
         <nav class="sticky top-0 bg-gray-900 py-4 z-10">
-            <div id="day-selector" class="day-selector flex justify-center space-x-2 overflow-x-auto pb-2">
+            <div id="day-selector"
+                class="day-selector flex justify-start md:justify-center space-x-2 overflow-x-auto pb-2">
                 <!-- Day buttons will be inserted here by JS -->
             </div>
         </nav>
@@ -179,7 +182,7 @@
                     "src": "https://placehold.co/512x512/1F2937/FFFFFF?text=Menu",
                     "sizes": "512x512",
                     "type": "image/png",
-                     "purpose": "any maskable"
+                    "purpose": "any maskable"
                 }]
             };
             const manifestJSON = JSON.stringify(manifest);
@@ -239,5 +242,5 @@
     </script>
 
 </body>
-</html>
 
+</html>
