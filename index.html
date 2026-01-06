@@ -56,49 +56,288 @@
 
     <script>
             const menu = {
-            Monday: {
-                Breakfast: ["Aloo Paratha", "Curd", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Malai Kofta Gravy", "Black Chana Masala", "Dal Tadka", "Plain Rice", "Chapati", "Rasam", "Fryums", "Green Salad", "Buttermilk", "Gulab Jamun"],
-                Snacks: ["Veg Chowmein", "Tea & Coffee"],
-                Dinner: ["Mutter Paneer/Lazeez", "Biryani Rice", "Dal Masala", "Plain Rice", "Chapati+Paratha", "Sambhar", "Onion Salad", "Boondi Raita", "Goan Egg Curry", "Fruit"]
-            },
-            Tuesday: {
-                Breakfast: ["Tadka Idli", "Coconut chutney", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Punjabi Rajma", "Aloo Baingan Dry", "Dal Kolhapuri", "Plain Rice", "Chapati", "Sambhar", "Roasted Papad", "Chana Onion Tomato Salad", "Plain Curd", "Jalebi Rabdi"],
-                Snacks: ["Vada Pav", "Tea & Coffee"],
-                Dinner: ["Pav Bhaji", "Mushroom Kadhai", "Dal Fry", "Plain Rice", "Chapati", "Plain Curd", "Rasam"]
-            },
-            Wednesday: {
-                Breakfast: ["Misal Pav", "Farsaan", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Soya Masala", "Kurkuri Bhindi", "Dal Makhni", "Jeera Rice", "Chapati", "Rasam", "Fryums", "Sprout Moong Salad", "Punjabi Lassi", "Boondi Laddoo"],
-                Snacks: ["Aloo Tikki Chaat", "Tea & Coffee"],
-                Dinner: ["Paneer Biryani", "Baingan Bharta", "Dal lasooni", "Plain rice", "Chapati", "Sambhar", "Mix Salad", "Veg Raita", "Chicken Biryani", "Fruit"]
-            },
-            Thursday: {
-                Breakfast: ["Onion Poha", "Lemon+Sev+Curd", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Chhole Amritsari", "Aloo Jeera", "Dal Fry", "Plain Rice", "Puri + Chapati", "Sambhar", "Fried Papad", "Toss Salad", "Fresh Lime Water", "Sevai Kheer"],
-                Snacks: ["Sabudana Vada", "Tea & Coffee"],
-                Dinner: ["Aloo Matar Gravy", "Mix Paratha", "Dal Tadka", "Jeera Rice", "Chapati", "Plain Curd", "Toss Salad", "Rasam"]
-            },
-            Friday: {
-                Breakfast: ["Medu Vada", "Sambhar + Chutney", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Kadi Pakoda", "Soya Kheema", "Dal Tadka", "Onion Rice", "Chapati", "Rasam", "Fryums", "Dhokla", "Plain Curd", "Rasmalai/Rasgulla"],
-                Snacks: ["Veg Cutlet", "Tea & Coffee"],
-                Dinner: ["Paneer Tikka Masala/Bhurji", "Tawa Veg Dry", "Dal Fry", "Jeera Rice", "Chapati+Paratha", "Sambhar", "Green salad", "Boondi Raita", "Chicken Patiala/Egg Bhurji", "Fruit"]
-            },
-            Saturday: {
-                Breakfast: ["Upma/ Vermicelli Upma", "Chutney + Ketchup", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot & Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Aloo Rasila", "Moong Dry", "Dal Lasooni", "Mutter Rice", "Chapati", "Sambhar", "Fried Papad", "Masala Chopped Salad", "Jaljeera", "Fruit Custard"],
-                Snacks: ["French Fries", "Tea & Coffee"],
-                Dinner: ["Schz Fried Rice/ Noodles", "Chawali Masala", "Dal Kolhapuri", "Manchurian", "Chapati", "Sweet corn soup", "Mix Salad", "Rasam"]
-            },
-            Sunday: {
-                Breakfast: ["Masala Dosa", "Sambhar+Chutney", "Omelette", "Boiled Egg", "Bread+Butter+Jam", "Bournvita", "Hot &Cold Milk", "Tea & Coffee", "Cornflakes"],
-                Lunch: ["Pyaaz Paratha", "Lehsun chutney", "Thecha", "Veg Biryani", "Fryums", "Macaroni Salad", "Vegetable Raita"],
-                Snacks: ["Bread Pakoda", "Tea & Coffee"],
-                Dinner: ["Chhole Bhature/Kulche", "Dahi Sev Puri", "Masala Khichadi", "Chapati", "Kokam Rasam", "Mix Salad", "Choco Bite"]
-            }
-        };
+    Monday: {
+        Breakfast: [
+            "Misal Pav",
+            "Farsaan",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Kadi Pakoda",
+            "Black Chana Masala",
+            "Dal Tadka",
+            "Plain Rice",
+            "Chapati",
+            "Rasam",
+            "Fryums",
+            "Green Salad",
+            "Mango Tang",
+            "Jalebi Rabdi"
+        ],
+        Snacks: [
+            "Bread Pakoda",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Paneer Tikka Masala",
+            "Biryani Rice",
+            "Dal Kolhapuri",
+            "Plain Rice",
+            "Chapati + Paratha",
+            "Sambhar",
+            "Onion Salad",
+            "Boondi Raita",
+            "Egg Masala Curry",
+            "Fruit"
+        ]
+    },
+
+    Tuesday: {
+        Breakfast: [
+            "Aloo Pyaz Paratha",
+            "Curd",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Methi Malai Matar",
+            "Bhindi Do Pyaza",
+            "Dal Fry",
+            "Plain Rice",
+            "Chapati",
+            "Rasam",
+            "Fryums",
+            "Dhokla",
+            "Plain Curd",
+            "Shahi Tukda"
+        ],
+        Snacks: [
+            "Corn Chaat",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Mushroom Kadhai",
+            "Baingan Bharta",
+            "Dal Fry",
+            "Plain Rice",
+            "Chapati",
+            "Plain Curd",
+            "Cream of Broccoli Soup"
+        ]
+    },
+
+    Wednesday: {
+        Breakfast: [
+            "Upma",
+            "Coconut Chutney",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Punjabi Rajma",
+            "Beans Dry Fry",
+            "Dal Makhni",
+            "Jeera Rice",
+            "Chapati",
+            "Rasam",
+            "Fryums",
+            "Sprout Moong Salad",
+            "Punjabi Lassi",
+            "Gajar Ka Halwa"
+        ],
+        Snacks: [
+            "Aloo Patties",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Paneer Biryani",
+            "Veg Sukka",
+            "Dal Lasooni",
+            "Plain Rice",
+            "Chapati",
+            "Sambhar",
+            "Mix Salad",
+            "Veg Raita",
+            "Chicken Biryani",
+            "Fruit"
+        ]
+    },
+
+    Thursday: {
+        Breakfast: [
+            "Onion Poha",
+            "Lemon + Sev + Curd",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Chhole Amritsari",
+            "Aloo Methi",
+            "Veg Dal",
+            "Plain Rice",
+            "Puri + Chapati",
+            "Sambhar",
+            "Fried Papad",
+            "Toss Salad",
+            "Fresh Lime Water",
+            "Sevai Kheer"
+        ],
+        Snacks: [
+            "Vada Pav",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Aloo Tamatar Gravy",
+            "Gobhi Paratha",
+            "Dal Tadka",
+            "Jeera Rice",
+            "Chapati",
+            "Plain Curd",
+            "Hot n Sour Soup"
+        ]
+    },
+
+    Friday: {
+        Breakfast: [
+            "Idli Sambhar",
+            "Coconut Chutney",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Lauki Chana Gravy",
+            "Soya Masala",
+            "Dal Kolhapuri",
+            "Plain Rice",
+            "Chapati",
+            "Sambhar",
+            "Roasted Papad",
+            "Masala Chopped Salad",
+            "Plain Curd",
+            "Gulab Jamun"
+        ],
+        Snacks: [
+            "Aloo Tikki Chaat",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Paneer Do Pyaza",
+            "Tawa Veg Dry",
+            "Dal Fry",
+            "Jeera Rice",
+            "Chapati + Paratha",
+            "Sambhar",
+            "Green Salad",
+            "Boondi Raita",
+            "Chicken Kebab Gravy / Egg Curry",
+            "Fruit"
+        ]
+    },
+
+    Saturday: {
+        Breakfast: [
+            "Masala Sandwich",
+            "Ketchup + Green Chutney",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Dum Aloo Gravy",
+            "Masala Baingan Dry",
+            "Dal Lasooni",
+            "Mutter Rice",
+            "Chapati",
+            "Sambhar",
+            "Fried Papad",
+            "Chana Onion Tomato Salad",
+            "Buttermilk",
+            "Pineapple Sheera"
+        ],
+        Snacks: [
+            "French Fries",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Veg Jaipur",
+            "Gobhi Manchurian",
+            "Dal Kolhapuri",
+            "Mutter Rice",
+            "Chapati",
+            "Plain Curd",
+            "Mix Salad",
+            "Tomato Soup + Croutons"
+        ]
+    },
+
+    Sunday: {
+        Breakfast: [
+            "Podi Masala Dosa",
+            "Sambhar + Chutney",
+            "Omelette",
+            "Boiled Egg",
+            "Bread + Butter + Jam",
+            "Bournvita",
+            "Hot & Cold Milk",
+            "Tea & Coffee",
+            "Cornflakes"
+        ],
+        Lunch: [
+            "Malai Kofta Gravy",
+            "Soya Kheema",
+            "Dal Kolhapuri",
+            "Veg Biryani",
+            "Chapati",
+            "Fryums",
+            "Green Salad",
+            "Vegetable Raita"
+        ],
+        Snacks: [
+            "Dabeli",
+            "Tea & Coffee"
+        ],
+        Dinner: [
+            "Chhole Kulche / Bhature",
+            "Dahi Kachori",
+            "Masala Khichadi",
+            "Chapati",
+            "Kokam Rasam",
+            "Mix Salad",
+            "Choco Bite"
+        ]
+    }
+};
+
 
         const daySelector = document.getElementById('day-selector');
         const menuDisplay = document.getElementById('menu-display');
