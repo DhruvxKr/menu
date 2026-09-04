@@ -2,6 +2,17 @@
 <html lang="en" class="dark">
 
 <head>
+    <!-- OneSignal Web Push -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "54f74e09-603c-4ae4-81e6-80cccce52861",
+        });
+      });
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Menu</title>
@@ -56,6 +67,7 @@
 
     <script>
 const menu = {
+
   Monday: {
     Breakfast: [
       "Aloo Pyaaz Paratha",
@@ -68,37 +80,38 @@ const menu = {
       "Cornflakes"
     ],
     Lunch: [
-      "Veg Kurma",
-      "Black Chana Dry",
-      "Dal Kolhapuri",
+      "Malai Kofta Gravy",
+      "Black Chana Masala",
+      "Dal Amritsari",
       "Plain Rice",
       "Chapati",
       "Rasam",
       "Fryums",
       "Green Salad",
       "Plain Curd",
-      "Gulab Jamun"
+      "Balushahi / Boondi Laddoo"
     ],
     Snacks: [
-      "Bread Pakoda",
+      "Maggi",
       "Tea & Coffee"
     ],
     Dinner: [
-      "Paneer Tikka Masala+Fruit",
-      "Biryani Rice",
+      "Paneer Butter Masala",
+      "Aloo Beans Fry",
       "Dal Fry",
       "Plain Rice",
       "Chapati",
       "Toss Salad",
       "Boondi Raita",
-      "Egg Kolhapuri"
+      "Punjabi Egg Curry",
+      "Fruit"
     ]
   },
 
   Tuesday: {
     Breakfast: [
-      "Idli",
-      "Sambhar + Chutney",
+      "Onion Poha",
+      "Lemon + Sev + Curd",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
       "Bournvita",
@@ -116,27 +129,27 @@ const menu = {
       "Roasted Papad",
       "Masala Chopped Salad",
       "Buttermilk",
-      "Shahi Tukda"
+      "Moong Dal Halwa"
     ],
     Snacks: [
-      "Dahi Kachori",
+      "Schezwan Roll",
       "Tea & Coffee"
     ],
     Dinner: [
-      "Alu Mutter",
-      "Masala Bhindi",
-      "Dal Tadka",
-      "Jeera Rice",
+      "Dahi Kachori",
+      "Bhindi Masala",
+      "Dal Punjabi",
+      "Plain Rice",
       "Chapati",
-      "Onion + Lemon",
+      "Tomato Soup + Croutons",
       "Plain Curd"
     ]
   },
 
   Wednesday: {
     Breakfast: [
-      "Onion Poha",
-      "Lemon + Sev + Curd",
+      "Puri Bhaji",
+      "Onion + Lemon",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
       "Bournvita",
@@ -146,35 +159,37 @@ const menu = {
     ],
     Lunch: [
       "Soya Chilli",
-      "Beans Dry",
+      "Aloo Methi",
       "Dal Makhni",
       "Jeera Rice",
       "Chapati",
       "Rasam",
       "Fryums",
-      "Sprout Moong Salad",
+      "Carrot Beetroot Salad",
       "Plain Curd",
-      "Moong Dal Halwa"
+      "Gulab Jamun"
     ],
     Snacks: [
-      "Bhel",
+      "Veg Chowmein",
       "Tea & Coffee"
     ],
     Dinner: [
-      "Paneer Biryani+Fruit",
-      "Pumpkin Dry",
+      "Paneer Biryani",
+      "Gobhi Masala",
+      "Dal Kolhapuri",
       "Plain Rice",
       "Chapati",
       "Mix Salad",
       "Veg Raita",
-      "Chicken Biryani"
+      "Chicken Biryani",
+      "Fruit"
     ]
   },
 
   Thursday: {
     Breakfast: [
-      "Masala Sandwich",
-      "Ketchup + Green Chutney",
+      "Misal Pav",
+      "Farsaan + Lemon + Onion",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
       "Bournvita",
@@ -184,13 +199,13 @@ const menu = {
     ],
     Lunch: [
       "Chhole Amritsari",
-      "Aloo Jeera",
+      "Beans Dry",
       "Veg Dal",
       "Plain Rice",
       "Puri + Chapati",
       "Sambhar",
       "Fried Papad",
-      "Onion Salad",
+      "Toss Salad",
       "Fresh Lime Water",
       "Sevai Kheer"
     ],
@@ -199,19 +214,19 @@ const menu = {
       "Tea & Coffee"
     ],
     Dinner: [
-      "Veg Makhanwala",
-      "Veg Manchurian",
-      "Dal Fry",
-      "Veg Fried Rice",
+      "Mushroom Masala",
+      "Mix Veg",
+      "Dal Makhani",
+      "Jeera Rice",
       "Chapati",
-      "Green Salad",
+      "Hot n Sour Soup",
       "Plain Curd"
     ]
   },
 
   Friday: {
     Breakfast: [
-      "Medu Vada",
+      "Masala Idli",
       "Sambhar + Chutney",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
@@ -223,35 +238,36 @@ const menu = {
     Lunch: [
       "Methi Matar Masala",
       "Bhindi Do Pyaaza",
-      "Masoor Dal",
+      "Dal Masoor",
       "Plain Rice",
       "Chapati",
-      "Sambhar",
+      "Rasam",
       "Roasted Papad",
-      "Tossed Salad",
+      "Masala Chopped Salad",
       "Plain Curd",
       "Malai Sandwich"
     ],
     Snacks: [
-      "Veg Sandwich",
+      "Aloo Pyaaz Pakode",
       "Tea & Coffee"
     ],
     Dinner: [
-      "Paneer Lazeez +Fruit",
-      "Dudhi Channa",
+      "Paneer Lazeez / Bhurji",
+      "Aloo Baingan",
       "Dal Tadka",
-      "Plain Rice",
+      "Jeera Rice",
       "Chapati + Paratha",
       "Sirka Onion",
       "Boondi Raita",
-      "Chicken Kadhai / Egg Masala"
+      "Chicken Patiala / Egg Bhurji",
+      "Fruit"
     ]
   },
 
   Saturday: {
     Breakfast: [
-      "Veg Upma",
-      "Chutney",
+      "Veg Sandwich",
+      "Ketchup + Green Chutney",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
       "Bournvita",
@@ -261,18 +277,18 @@ const menu = {
     ],
     Lunch: [
       "Dum Aloo Gravy",
-      "Moong Dry",
-      "Dal Lasooni",
+      "Lauki Chana Dry",
+      "Dal Punjabi",
       "Plain Rice",
       "Chapati",
-      "Rasam",
+      "Sambhar",
       "Fried Papad",
-      "Carrot Beetroot Salad",
+      "Sprout Moong Salad",
       "Punjabi Lassi",
-      "Pineapple Sheera"
+      "Shahi Tukda / Fruit Custard"
     ],
     Snacks: [
-      "Samosa",
+      "Dabeli",
       "Tea & Coffee"
     ],
     Dinner: [
@@ -281,14 +297,14 @@ const menu = {
       "Dal Kolhapuri",
       "Plain Rice",
       "Chapati",
-      "Mix Salad",
+      "Veg Soup",
       "Plain Curd"
     ]
   },
 
   Sunday: {
     Breakfast: [
-      "Masala Dosa",
+      "Podi Masala Dosa",
       "Sambhar + Chutney",
       "Omelette or Boiled Egg",
       "Bread+Butter+Jam",
@@ -299,11 +315,11 @@ const menu = {
     ],
     Lunch: [
       "Pyaaz Paratha",
-      "Thecha + Mirchi Pickle",
-      "Whole Masoor Dal",
+      "Thecha + Tomato Chutney",
+      "Dal Fry",
       "Veg Biryani",
       "Chapati",
-      "Sambhar",
+      "Kokam Rasam",
       "Roasted Papad",
       "Macaroni Salad",
       "Veg Raita"
@@ -313,18 +329,17 @@ const menu = {
       "Tea & Coffee"
     ],
     Dinner: [
-      "Punjabi Chhole",
+      "Amritsari Chhole",
       "Bhature",
-      "Dahi Sev Puri",
+      "Dahi Sev Puri / Pani Puri",
       "Masala Khichadi",
       "Chapati",
       "Onion Salad",
       "Choco Bite"
     ]
   }
+
 };
-
-
         const daySelector = document.getElementById('day-selector');
         const menuDisplay = document.getElementById('menu-display');
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -342,7 +357,6 @@ const menu = {
                     Dinner: '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>'
                 };
 
-                // Create cards in order
                 Object.keys(dayMenu).forEach(meal => {
                     const items = dayMenu[meal];
                     const card = document.createElement('div');
@@ -362,7 +376,7 @@ const menu = {
                 });
             }
 
-            // Update active button
+           
             document.querySelectorAll('.day-btn').forEach(button => {
                 if (button.textContent === day) {
                     button.classList.add('bg-indigo-600', 'text-white');
@@ -375,7 +389,6 @@ const menu = {
             });
         }
 
-        // Populate day selector
         days.forEach(day => {
             const button = document.createElement('button');
             button.textContent = day;
@@ -384,86 +397,9 @@ const menu = {
             daySelector.appendChild(button);
         });
 
-        // Show today's menu initially
         showMenu(today);
 
-        // PWA Setup - This part makes the app installable and work offline
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Generate and inject the manifest file
-            const manifest = {
-                "name": "Weekly Menu App",
-                "short_name": "Menu App",
-                "start_url": ".",
-                "display": "standalone",
-                "background_color": "#111827",
-                "theme_color": "#1F2937",
-                "description": "A simple app to view the weekly menu.",
-                "icons": [{
-                    "src": "https://placehold.co/192x192/1F2937/FFFFFF?text=Menu",
-                    "sizes": "192x192",
-                    "type": "image/png",
-                    "purpose": "any maskable"
-                }, {
-                    "src": "https://placehold.co/512x512/1F2937/FFFFFF?text=Menu",
-                    "sizes": "512x512",
-                    "type": "image/png",
-                    "purpose": "any maskable"
-                }]
-            };
-            const manifestJSON = JSON.stringify(manifest);
-            const manifestBlob = new Blob([manifestJSON], { type: 'application/json' });
-            const manifestUrl = URL.createObjectURL(manifestBlob);
-            document.getElementById('manifest').setAttribute('href', manifestUrl);
-
-            // 2. Define and register the Service Worker
-            const swCode = `
-                const CACHE_NAME = 'weekly-menu-cache-v1';
-                const urlsToCache = [
-                    '/',
-                    '/index.html'
-                ];
-
-                self.addEventListener('install', event => {
-                    event.waitUntil(
-                        caches.open(CACHE_NAME).then(cache => {
-                            console.log('Cache opened');
-                            return cache.addAll(urlsToCache.map(url => new Request(url, { cache: 'reload' })));
-                        })
-                    );
-                });
-
-                self.addEventListener('fetch', event => {
-                    event.respondWith(
-                        caches.match(event.request).then(response => {
-                            return response || fetch(event.request);
-                        })
-                    );
-                });
-
-                self.addEventListener('activate', event => {
-                    const cacheWhitelist = [CACHE_NAME];
-                    event.waitUntil(
-                        caches.keys().then(cacheNames => {
-                            return Promise.all(
-                                cacheNames.map(cacheName => {
-                                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                                        return caches.delete(cacheName);
-                                    }
-                                })
-                            );
-                        })
-                    );
-                });
-            `;
-
-            if ('serviceWorker' in navigator) {
-                const swBlob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(swBlob);
-                navigator.serviceWorker.register(swUrl)
-                    .then(reg => console.log('Service Worker registered.', reg))
-                    .catch(err => console.error('Service Worker registration failed:', err));
-            }
-        });
+        
     </script>
 
 </body>
